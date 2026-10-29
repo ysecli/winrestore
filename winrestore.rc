@@ -1,0 +1,71 @@
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+// winresrc.h is the resource-only subset of windows.h/commctrl.h. The full headers make
+// Visual Studio's resource editor fail with "symbol name too long".
+#include <winresrc.h>
+#ifndef IDC_STATIC
+#define IDC_STATIC (-1)
+#endif
+#undef APSTUDIO_READONLY_SYMBOLS
+
+#ifdef APSTUDIO_INVOKED
+1 TEXTINCLUDE
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE
+BEGIN
+    "#include <winresrc.h>\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE
+BEGIN
+    "\r\n"
+    "\0"
+END
+#endif
+
+IDD_PROFILES DIALOGEX 0, 0, 400, 232
+STYLE DS_SHELLFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "winrestore profiles"
+FONT 8, "MS Shell Dlg", 400, 0, 1
+BEGIN
+    LTEXT           "", IDC_TARGET, 7, 7, 386, 10
+    CONTROL         "", IDC_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP, 7, 20, 386, 140
+    LTEXT           "Double-click a profile to edit it. Which position wins: restored to default (this session) > this process's profile > global profile > last position.", IDC_STATIC, 7, 164, 386, 18
+    PUSHBUTTON      "New from current window", IDC_NEW, 7, 188, 100, 14
+    PUSHBUTTON      "Edit...", IDC_EDITPROF, 111, 188, 50, 14
+    PUSHBUTTON      "Delete", IDC_DELETE, 165, 188, 50, 14
+    PUSHBUTTON      "Restore this process to default (this session)", IDC_BYPASS, 7, 210, 200, 14
+    DEFPUSHBUTTON   "Close", IDCANCEL, 343, 210, 50, 14
+END
+
+IDD_EDIT DIALOGEX 0, 0, 280, 198
+STYLE DS_SHELLFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Profile"
+FONT 8, "MS Shell Dlg", 400, 0, 1
+BEGIN
+    LTEXT           "Name:", IDC_STATIC, 7, 9, 40, 8
+    EDITTEXT        IDC_NAME, 50, 7, 223, 12, ES_AUTOHSCROLL
+    LTEXT           "Monitor:", IDC_STATIC, 7, 27, 40, 8
+    COMBOBOX        IDC_MONITOR, 50, 25, 223, 120, CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Pixels, relative to the top-left of the monitor's usable area (taskbar excluded). On a monitor with a different resolution it is scaled to fit.", IDC_STATIC, 7, 43, 266, 18
+    LTEXT           "X:", IDC_STATIC, 7, 66, 10, 8
+    EDITTEXT        IDC_X, 18, 64, 40, 12, ES_NUMBER
+    LTEXT           "Y:", IDC_STATIC, 66, 66, 10, 8
+    EDITTEXT        IDC_Y, 77, 64, 40, 12, ES_NUMBER
+    LTEXT           "Width:", IDC_STATIC, 125, 66, 24, 8
+    EDITTEXT        IDC_W, 150, 64, 40, 12, ES_NUMBER
+    LTEXT           "Height:", IDC_STATIC, 198, 66, 26, 8
+    EDITTEXT        IDC_H, 225, 64, 48, 12, ES_NUMBER
+    AUTOCHECKBOX    "Maximized", IDC_MAX, 7, 85, 100, 10
+    PUSHBUTTON      "Capture from current window", IDC_CAPTURE, 163, 82, 110, 14
+    AUTOCHECKBOX    "Save globally (every process without its own profile opens like this)", IDC_GLOBAL, 7, 106, 266, 10
+    AUTOCHECKBOX    "Use for this process", IDC_ASSIGN, 7, 122, 266, 10
+    LTEXT           "A profile never records moves: if you move the window and restart, it goes back to the profile.", IDC_STATIC, 7, 140, 266, 18
+    DEFPUSHBUTTON   "OK", IDOK, 169, 177, 50, 14
+    PUSHBUTTON      "Cancel", IDCANCEL, 223, 177, 50, 14
+END
